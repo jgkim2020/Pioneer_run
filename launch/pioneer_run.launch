@@ -17,7 +17,7 @@
 	
 	<node pkg="pioneer_run" name="pioneer_ref_talker" type="path_talker.py" output="screen">
 		<param name="ref_traj_topic_name" value="/pioneer_controller/target_goal" type="str"/>
-		<param name="bagfile_name" value="$(find asap)/launch/exp1.bag" type="str"/>
+		<param name="bagfile_name" value="$(find asap)/launch/exp5.bag" type="str"/>
 		<param name="target_name" value="target"/> <!--In gazebo env-->
 	</node>
 

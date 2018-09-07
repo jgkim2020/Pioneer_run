@@ -140,7 +140,7 @@ void Pioneer::goal_callback(const geometry_msgs::PointConstPtr & msg) {
 bool Pioneer::control_input(geometry_msgs::Point goal, geometry_msgs::Twist& insert_input) {
 
     bool insanity;
-    double error = sqrt(pow(goal.x - cur_pose.pose.position.x, 2) + pow(goal.y - cur_pose.pose.position.y, 2)) -0.3;
+    double error = sqrt(pow(goal.x - cur_pose.pose.position.x, 2) + pow(goal.y - cur_pose.pose.position.y, 2)) -0.15;
     double dist = sqrt(pow(goal.x - cur_pose.pose.position.x, 2) + pow(goal.y - cur_pose.pose.position.y, 2));
     double tangential = 0;
 

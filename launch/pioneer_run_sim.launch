@@ -5,10 +5,10 @@
 	
 		<param name="world_frame_id" value="/world"/>
 		<param name="base_frame_id" value="/target/odom"/>
-		<param name="linear_gain/P" value="0.3"/>
+		<param name="linear_gain/P" value="0.35"/>
 		<param name="linear_gain/I" value="0.1"/>
-		<param name="angular_gain" value="0.2"/>
-		<param name="angular_tangential_gain" value="0.2"/>
+		<param name="angular_gain" value="0.3"/>
+		<param name="angular_tangential_gain" value="0.3"/>
 		<param name="control_input_topic" value="/target/cmd_vel_mux/input/teleop"/>
 		<param name="goal_topic" value ="target_goal"/>
 		
@@ -17,7 +17,7 @@
 	
 	<node pkg="pioneer_run" name="pioneer_ref_talker" type="path_talker.py" output="screen">
 		<param name="ref_traj_topic_name" value="/pioneer_controller/target_goal" type="str"/>
-		<param name="bagfile_name" value="$(find asap)/launch/exp5.bag" type="str"/>
+		<param name="bagfile_name" value="$(find asap)/launch/exp11.bag" type="str"/>
 		<param name="target_name" value="target"/> <!--In gazebo env-->
 	</node>
 
