@@ -62,8 +62,10 @@ if __name__ == "__main__":
         # poseStamped.pose.position
         # ref_path.poses
 
-    x_ref = savgol_filter(x_ref,5001,0) -2
-    y_ref = savgol_filter(y_ref, 5001, 0)
+    # x_ref = savgol_filter(x_ref,5001,0) -2
+    # y_ref = savgol_filter(y_ref, 5001, 0)
+
+
 
     fx = interp1d(t_ref, x_ref)
     fy = interp1d(t_ref, y_ref)

@@ -1,6 +1,6 @@
 <?xml version = "1.0" encoding="UTF-8"?>
 <launch>
-<!--
+
 	<node pkg="pioneer_run" name="pioneer_controller" type="pioneer_run_node" output="screen">
 	
 		<param name="world_frame_id" value="/world"/>
@@ -13,11 +13,11 @@
 		<param name="goal_topic" value ="target_goal"/>
 		
 	</node>
-	-->
+	
 	
 	<node pkg="pioneer_run" name="pioneer_ref_talker" type="path_talker.py" output="screen">
 		<param name="ref_traj_topic_name" value="/pioneer_controller/target_goal" type="str"/>
-		<param name="bagfile_name" value="$(find asap)/launch/exp1.bag" type="str"/>
+		<param name="bagfile_name" value="$(find asap)/launch/exp5.bag" type="str"/>
 		<param name="target_name" value="target"/> <!--In gazebo env-->
 	</node>
 
