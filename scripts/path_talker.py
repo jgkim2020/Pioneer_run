@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from argparse import ArgumentParser
 import numpy as np
 from geometry_msgs.msg import Point
+from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Path
 import rospy
 from scipy.interpolate import interp1d
@@ -20,8 +21,8 @@ def true_pos_callback(data):
     global x_true, y_true, t_true
 
 
-    x_true.append(data.x)
-    y_true.append(data.y)
+    x_true.append(data.pose.position.x)
+    y_true.append(data.pose.position.y)
     now = rospy.get_rostime()
     t_now = now.secs + now.nsecs * 1e-9
     t_true.append(t_now)
@@ -51,13 +52,14 @@ if __name__ == "__main__":
     print (bagfile_name)
 
     bag = rosbag.Bag(bagfile_name)
-    for topic, msg, t in bag.read_messages(topics=['/gazebo/model_states']):
-        target_idx = np.where(np.array(msg.name) == target_name)[0][0]
-        target_pos = msg.pose[target_idx]
-        x_ref.append(target_pos.position.x)
-        y_ref.append(target_pos.position.y)
-        t_ref.append(t.secs + t.nsecs * 1e-9)
-        # poseStamped = PoseStamped()
+
+
+
+
+    for topic, msg, t in bag.read_messages(topics=['/pioneer_controller/target_goal']):
+        x_ref.append(msg.x-2)
+        y_ref.append(msg.y)
+        t_ref.append(t.secs + t.nsecs*1e-9)        # poseStamped = PoseStamped()
         # poseStamped.header.frame_id = "/world"
         # poseStamped.pose.position
         # ref_path.poses
@@ -74,7 +76,9 @@ if __name__ == "__main__":
 
     ref_pub = rospy.Publisher(ref_traj_topic_name,Point, queue_size = 1)
     path_pub = rospy.Publisher("ref_path",Path,queue_size=1)
-    true_sub = rospy.Subscriber('pioneer_controller/target_position',Point,true_pos_callback)
+    ## topic name!! jgkim_mod
+    true_sub = rospy.Subscriber('target_position',PoseStamped,true_pos_callback)
+
 
     t_init_ref = t_ref[0]
     now = rospy.get_rostime()
